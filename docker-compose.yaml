@@ -1,0 +1,31 @@
+version: '3.1'
+
+services:
+  
+  servicio-control:
+    image: servicio-app
+    ports:
+      - ${PORT_SERVICE_LOCAL}:${PORT_SERVICE_DOCKER}
+    volumes:
+      - ./App/src:/usr/src/app    
+    networks:
+      - red-servicio
+    container_name: servicio-control
+
+  db:
+    image: mysql:${MYSQL_VERSION}
+    ports:
+      - ${PORT_DB_LOCAL}:${PORT_DB_DOCKER}
+    volumes:
+      - ./Db/Data:/var/lib/mysql
+    networks:
+      - red-servicio
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+    container_name: db
+    
+
+networks:
+  red-servicio:
+    name: red-servicio
