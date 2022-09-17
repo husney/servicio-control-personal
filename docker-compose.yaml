@@ -10,7 +10,9 @@ services:
       - ./App/src:/usr/src/app    
     networks:
       - red-servicio
+    restart: always
     container_name: servicio-control
+    
 
   db:
     image: mysql:${MYSQL_VERSION}
@@ -23,9 +25,12 @@ services:
     environment:
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
       - MYSQL_DATABASE=${MYSQL_DATABASE}
+    restart: always
     container_name: db
     
 
 networks:
   red-servicio:
     name: red-servicio
+    driver: bridge
+    external: true
