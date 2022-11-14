@@ -6,7 +6,7 @@ api = Api(app)
 
 @app.route('/')
 def index():    
-    return 'Gestión de personas ' + str("")
+    return 'Gestión de personas '
 
 from resources.persona import Persona, Personas
 from resources.estructuraFisica import EstructuraFisica, EstructurasFisicas
@@ -31,4 +31,4 @@ api.add_resource(TiposIdentificacion, '/tiposIdentificacion')
 
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=5001, debug=True)
+    app.run(host='0.0.0.0', port=3090, debug=True)
